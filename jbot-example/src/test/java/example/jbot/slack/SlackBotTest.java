@@ -26,6 +26,7 @@ import java.util.regex.Pattern;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.when;
 
 /**
@@ -315,6 +316,7 @@ public class SlackBotTest {
             } else {
                 System.out.println("No problem. You can always schedule one with 'setup meeting' command.");
                 stopConversation(event);    // stop conversation only if user says no
+                assertFalse(isConversationOn(event));
             }
         }
 
@@ -326,6 +328,7 @@ public class SlackBotTest {
                 System.out.println("Okay, don't forget to attend the meeting tomorrow :)");
             }
             stopConversation(event);    // stop conversation
+            assertFalse(isConversationOn(event));
         }
     }
 }
